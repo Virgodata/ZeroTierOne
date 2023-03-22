@@ -131,3 +131,11 @@ pub fn xorshift64_random() -> u64 {
     *state = x;
     x
 }
+
+pub fn xorshift64_hash(a: u32, b: u32) -> u64 {
+    let mut x = a as u64 | (b as u64).wrapping_shl(32);
+    x ^= x.wrapping_shl(13);
+    x ^= x.wrapping_shr(7);
+    x ^= x.wrapping_shl(17);
+    x
+}
